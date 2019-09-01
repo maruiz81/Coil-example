@@ -1,3 +1,3 @@
-# Koin-Example
+# Coil-Example
 
-An example of Dependency Injection with Koin
+Example of image loading using Coil
