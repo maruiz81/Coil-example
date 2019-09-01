@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Coil Example</string>
+    <string name="error">Error in the Request</string>
+</resources>
