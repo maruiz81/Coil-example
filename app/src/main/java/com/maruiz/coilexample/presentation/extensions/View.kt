@@ -6,20 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
-import coil.Coil
-import coil.api.load
-import kotlin.time.ClockMark
+import coil.load
 import kotlin.time.ExperimentalTime
-import kotlin.time.MonoClock
+import kotlin.time.TimeMark
+import kotlin.time.TimeSource
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
     LayoutInflater.from(context).inflate(layoutRes, this, false)
 
-@UseExperimental(ExperimentalTime::class)
-fun ImageView.loadImage(url: String, totalMark:ClockMark) {
+@OptIn(ExperimentalTime::class)
+fun ImageView.loadImage(url: String, totalMark: TimeMark) {
     val tag = "ImageLoading"
-    val mark = MonoClock.markNow()
-    Coil.load(context, url) {
+    val mark = TimeSource.Monotonic.markNow()
+    this.load(url) {
         target { drawable ->
             this@loadImage.setImageDrawable(drawable)
             Log.d(tag, "Elapsed time: ${mark.elapsedNow()} $url")
